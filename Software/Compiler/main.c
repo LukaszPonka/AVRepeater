@@ -9,8 +9,6 @@
 // Definicja wyjść
 #define LED_GREEN PB2       // Zielona dioda
 #define LED_RED PB3         // Czerwona dioda
-#define LED_PLAYER1 PB4     // Dioda gracza 1
-#define LED_PLAYER2 PB5     // Dioda gracza 2
 
 // Definicja wejść - przyciski gracza 1 i gracza 2
 #define BTN1_P1 PD2
@@ -23,12 +21,13 @@
 #define BTN3_P2 PB0
 #define BTN4_P2 PB1
 
+#define BNT_START PB4
+
 // ################################################
 //               DEFINIOWANIE ZMIENNYCH
 // ################################################
 
-#define MAX_SEQ 20   // Maksymalna długość sekwencji
-#define PLAYER_SWITCH_TIME 2000  // Przełączanie gracza po 2 sekundy
+#define MAX_SEQ 10   // Maksymalna długość sekwencji
 #define PLAYER_LOSE_TIME 5000     // Czas przegranej 5 sekund
 
 uint8_t sequence[MAX_SEQ];   // Sekwencja gracza 1
@@ -57,32 +56,6 @@ void uart_print(const char *str) {
     }
 }
 
-// Funkcje zmieniające aktywnego gracza
-void player1() {
-    PORTB &= ~(1 << LED_PLAYER2);   // Wyłączenie diody gracza 2
-    PORTB |= (1 << LED_PLAYER1);    // Włączenie diody gracza 1
-    player1_turn = true;
-}
-
-void player2() {
-    PORTB &= ~(1 << LED_PLAYER1);   // Wyłączenie diody gracza 1
-    PORTB |= (1 << LED_PLAYER2);    // Włączenie diody gracza 2
-    player1_turn = false;
-}
-
-// Funkcja kończąca grę
-void end_game() {
-    PORTB &= ~(1 << LED_PLAYER1);   // Wyłączenie diody gracza 1
-    PORTB &= ~(1 << LED_PLAYER2);   // Wyłączenie diody gracza 2
-}
-
-// Funkcja mrugająca diodą
-void blink_led(uint8_t led) {
-    PORTB |= (1 << led);   // Zapalenie diody
-    _delay_ms(200);        // Opóźnienie 200 ms
-    PORTB &= ~(1 << led);  // Zgaszenie diody
-}
-
 // Sprawdzenie, czy przycisk został wciśnięty
 bool button_pressed(volatile uint8_t *port, uint8_t pin) {
     if (!(*port & (1 << pin))) {  // Sprawdzanie czy przycisk jest naciśnięty (niski stan)
@@ -93,92 +66,151 @@ bool button_pressed(volatile uint8_t *port, uint8_t pin) {
     return false;
 }
 
-// Funkcja rejestrująca ruchy gracza
-void register_moves() {
-    uint32_t last_press_time = 0; // Czas ostatniego naciśnięcia
-    seq_length = 0;                // Resetowanie długości sekwencji
+// Funkcja do migania diodą
+void blink(uint8_t led) {
+    PORTB |= (1 << led);    // Włączenie diody
+    _delay_ms(100);         // Opóźnienie 100 ms
+    PORTB &= ~(1 << led);   // Wyłączenie diody
+}
+
+// Funkcja dla gracza 1 do wprowadzania sekwencji
+void player1() {
+    seq_length = 0;  // Zerowanie długości sekwencji
 
     while (seq_length < MAX_SEQ) {
         // Sprawdzanie naciśnięć przycisków dla gracza 1
-        if (player1_turn) {
-
-          /*if (button_pressed(&PIND, BTN1_P1)) {
+        if (button_pressed(&PIND, BTN1_P1)) {
             sequence[seq_length++] = BTN1_P1;
-            blink_led(LED_PLAYER1); // Mrugnięcie diodą
-            last_press_time = 0; // Resetuj czas ostatniego naciśnięcia
-           } else if (button_pressed(&PIND, BTN1_P1)) {
+            uart_print("BNT1\n");
+            blink(LED_GREEN);  // Miganie zieloną diodą po naciśnięciu
+        } else if (button_pressed(&PIND, BTN2_P1)) {
             sequence[seq_length++] = BTN2_P1;
-            blink_led(LED_PLAYER1); // Mrugnięcie diodą
-            last_press_time = 0; // Resetuj czas ostatniego naciśnięcia
-          } else if (button_pressed(&PIND, BTN3_P1)) {
+            uart_print("BNT2\n");
+            blink(LED_GREEN);  // Miganie zieloną diodą po naciśnięciu
+        } else if (button_pressed(&PIND, BTN3_P1)) {
             sequence[seq_length++] = BTN3_P1;
-            blink_led(LED_PLAYER1); // Mrugnięcie diodą
-            last_press_time = 0; // Resetuj czas ostatniego naciśnięcia
-          } else if (button_pressed(&PIND, BTN4_P1)) {
+            uart_print("BNT3\n");
+            blink(LED_GREEN);  // Miganie zieloną diodą po naciśnięciu
+        } else if (button_pressed(&PIND, BTN4_P1)) {
             sequence[seq_length++] = BTN4_P1;
-            blink_led(LED_PLAYER1); // Mrugnięcie diodą
-            last_press_time = 0; // Resetuj czas ostatniego naciśnięcia
-          } else {
-            last_press_time++;
-          }
-
-          if (last_press_time >= PLAYER_SWITCH_TIME) {
-            uart_print("Czas na zmianę gracza!\r\n");
-            player2(); // Zmiana gracza
-            break; // Przerywamy rejestrowanie ruchów
-          }*/
-
-
-          last_press_time =+ 1;
-          if (last_press_time >= PLAYER_SWITCH_TIME) {
-            uart_print("Czas na zmianę gracza!\r\n");
-          }
-
+            uart_print("BNT4\n");
+            blink(LED_GREEN);  // Miganie zieloną diodą po naciśnięciu
+        } else if (button_pressed(&PINB, BNT_START)) {
+            break;  // Zakończ wprowadzanie sekwencji
         }
-
-        
     }
+    player1_turn = false;  // Przełączenie tury na gracza 2
+    blink(LED_GREEN);
+    blink(LED_RED);
+    blink(LED_GREEN);
+    blink(LED_RED);
 }
 
+// Funkcja dla gracza 2 do odtwarzania sekwencji
+void player2() {
+    uint8_t input_seq_length = 0;  // Indeks dla porównywania sekwencji gracza 1
+
+    uart_print("Gracz 2: Odtwórz sekwencję!\r\n");
+
+    // Gracz 2 odtwarza sekwencję
+    while (input_seq_length < seq_length) {
+        // Sprawdzenie wciśniętego przycisku przez gracza 2
+        if (button_pressed(&PIND, BTN1_P2)) {
+            if (sequence[input_seq_length] == BTN1_P1) {
+                uart_print("Dobrze!\r\n");
+                blink(LED_GREEN);  // Miganie zieloną diodą przy poprawnym wciśnięciu
+                input_seq_length++;
+            } else {
+                uart_print("Źle!\r\n");
+                signal_failure();
+                return;  // Gracz 2 przegrał, wyjście z funkcji
+            }
+        } else if (button_pressed(&PIND, BTN2_P2)) {
+            if (sequence[input_seq_length] == BTN2_P1) {
+                uart_print("Dobrze!\r\n");
+                blink(LED_GREEN);  // Miganie zieloną diodą przy poprawnym wciśnięciu
+                input_seq_length++;
+            } else {
+                uart_print("Źle!\r\n");
+                signal_failure();
+                return;  // Gracz 2 przegrał, wyjście z funkcji
+            }
+        } else if (button_pressed(&PINB, BTN3_P2)) {
+            if (sequence[input_seq_length] == BTN3_P1) {
+                uart_print("Dobrze!\r\n");
+                blink(LED_GREEN);  // Miganie zieloną diodą przy poprawnym wciśnięciu
+                input_seq_length++;
+            } else {
+                uart_print("Źle!\r\n");
+                signal_failure();
+                return;  // Gracz 2 przegrał, wyjście z funkcji
+            }
+        } else if (button_pressed(&PINB, BTN4_P2)) {
+            if (sequence[input_seq_length] == BTN4_P1) {
+                uart_print("Dobrze!\r\n");
+                blink(LED_GREEN);  // Miganie zieloną diodą przy poprawnym wciśnięciu
+                input_seq_length++;
+            } else {
+                uart_print("Źle!\r\n");
+                signal_failure();
+                return;  // Gracz 2 przegrał, wyjście z funkcji
+            }
+        }
+    }
+
+    // Jeśli gracz 2 poprawnie odtworzył całą sekwencję
+    signal_success();
+}
+
+// Sygnalizacja wygranej
+void signal_success() {
+    uart_print("Gracz 2 wygrał!\r\n");
+    PORTB |= (1 << LED_GREEN);  // Zapalenie zielonej diody, która pozostanie włączona do restartu
+}
+
+// Sygnalizacja przegranej
+void signal_failure() {
+    uart_print("Gracz 2 przegrał!\r\n");
+    PORTB |= (1 << LED_RED);  // Zapalenie czerwonej diody, która pozostanie włączona do restartu
+}
+
+// Główna pętla programu
 int main(void) {
     // Inicjalizacja UART
     uart_init(9600);  
     
     // Konfiguracja portów dla diod
-    DDRB |= (1 << LED_RED) | (1 << LED_GREEN) | (1 << LED_PLAYER1) | (1 << LED_PLAYER2);
+    DDRB |= (1 << LED_RED) | (1 << LED_GREEN);
     
     // Konfiguracja portów dla przycisków
     DDRD &= ~((1 << BTN1_P1) | (1 << BTN2_P1) | (1 << BTN3_P1) | (1 << BTN4_P1) | (1 << BTN1_P2) | (1 << BTN2_P2));
-    DDRB &= ~((1 << BTN3_P2) | (1 << BTN4_P2));
+    DDRB &= ~((1 << BTN3_P2) | (1 << BTN4_P2) | (1 << BNT_START));
 
     // Konfiguracja Pull-up dla przycisków 
     PORTD |= (1 << BTN1_P1) | (1 << BTN2_P1) | (1 << BTN3_P1) | (1 << BTN4_P1) | (1 << BTN1_P2) | (1 << BTN2_P2);
-    PORTB |= (1 << BTN3_P2) | (1 << BTN4_P2);  
+    PORTB |= (1 << BTN3_P2) | (1 << BTN4_P2) | (1 << BNT_START);  
 
     uart_print("Oczekiwanie na pierwszy ruch.......\r\n");
 
     while (1) {
         // Oczekiwanie na pierwsze naciśnięcie
         if (!game_started) {
-            end_game();
-            if (button_pressed(&PIND, BTN1_P1) || button_pressed(&PIND, BTN2_P1) || 
-                button_pressed(&PIND, BTN3_P1) || button_pressed(&PIND, BTN4_P1)) 
-            {
+            if (button_pressed(&PINB, BNT_START)) {
+                player1_turn = true;
                 game_started = true;
+                uart_print("Gra rozpoczęta!\r\n");
+                PORTB &= ~(1 << LED_RED) & ~(1 << LED_GREEN);
+            }
+        } else {
+            if (player1_turn) {
+                uart_print("Gracz 1: Wybierz sekwencję!\r\n");
                 player1();
-                uart_print("Zaczyna gracz 1!\r\n");
-                register_moves(); // Rozpoczęcie rejestracji ruchów gracza 1
-            } 
-            else if (button_pressed(&PIND, BTN1_P2) || button_pressed(&PIND, BTN2_P2) || 
-                     button_pressed(&PINB, BTN3_P2) || button_pressed(&PINB, BTN4_P2)) 
-            {
-                game_started = true;
+            } else {
                 player2();
-                uart_print("Zaczyna gracz 2!\r\n");
-                register_moves(); // Rozpoczęcie rejestracji ruchów gracza 2
+                game_started = false;  // Restartowanie gry po zakończeniu
+                // Wyłączanie diod po zakończeniu gry
+                
             }
         }
-        
-        // Można dodać dodatkową logikę do przetwarzania gry po zakończeniu rejestracji ruchów
     }
 }
