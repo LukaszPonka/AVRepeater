@@ -17,7 +17,6 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 
 - **Start gry lub zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu PB4.
 
-- **Zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu PB4.
 
   
 
@@ -62,5 +61,5 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 
 - Board view [PDF](./Hardware/board_view_v2.pdf)
 
-- Pliki produkcyjne Gerber dla JLCPCB [Gerber](./Hardware/gerber%for%jlcpcb/)
+- Pliki produkcyjne Gerber dla JLCPCB [Gerber](./Hardware/gerber%20for%20jlcpcb/)
   
