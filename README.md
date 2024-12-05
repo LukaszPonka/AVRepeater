@@ -5,17 +5,19 @@
 
 ## Wstęp
 
-Gra polega na wprowadzeniu przez gracza 1 sekwencji przycisków, którą gracz 2 musi odtworzyć w poprawnej kolejności. Jeśli gracz 2 zrobi to poprawnie, wygrywa, w przeciwnym razie przegrywa.
+Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą gracz nr 2 musi odtworzyć w poprawnej kolejności. Dopuszczalne są kombinacje maksymalnie dziesięciokrokowe. Jeśli gracz 2 zrobi to poprawnie, wygrywa, w przeciwnym razie przegrywa.
 
   
 
 ## Sterowanie:
 
-- **Gracz 1:** używa przycisków przypisanych do portów PD2, PD3, PD4, PD5.
+- **Gracz 1:** używa czterech przycisków przypisanych do portów PD2, PD3, PD4, PD5.
 
-- **Gracz 2:** używa przycisków przypisanych do portów PD6, PD7, PB0, PB1.
+- **Gracz 2:** używa czterech przycisków przypisanych do portów PD6, PD7, PB0, PB1.
 
-- **Start gry:** wciśnięcie przycisku przypisanego do portu PB4.
+- **Start gry lub zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu PB4.
+
+- **Zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu PB4.
 
   
 
@@ -50,3 +52,15 @@ Gra polega na wprowadzeniu przez gracza 1 sekwencji przycisków, którą gracz 2
 - Gracz 2 przegrywa, jeśli popełni błąd.
 
 - Po zakończeniu gry dioda pozostaje włączona, a gra restartuje się po wciśnięciu przycisku START.
+
+
+## Dokumentacja:
+
+- Schemat układu [PDF](./Hardware/schemav2.pdf)
+
+- Lista materiałowa [XLS](./Hardware/bom.xls)
+
+- Board view [PDF](./Hardware/board_view_v2.pdf)
+
+- Pliki produkcyjne Gerber dla JLCPCB [Gerber](./Hardware/gerber%for%jlcpcb/)
+  
