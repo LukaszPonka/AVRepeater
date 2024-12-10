@@ -34,7 +34,7 @@
 uint8_t sequence[MAX_SEQ]; // Sekwencja gracza 1
 uint8_t seq_length = 0;    // Długość sekwencji
 bool player1_turn;         // Który gracz jest aktywny (początkowo gracz 1)
-bool game_started = false;
+bool game_started = false; // Kontrola stanu gry
 
 // ################################################
 //               INICJALIZACJA UART
