@@ -1,4 +1,4 @@
-NAME = program
+NAME = main
 SERIAL = COM0
 ARDUINO = -F -V -c arduino -P $(SERIAL) -b 115200
 USBASP = avrdude -c usbasp
