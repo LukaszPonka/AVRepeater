@@ -5,15 +5,15 @@ Symulator programu dostępny tutaj: [👉 Demo](https://wokwi.com/projects/41111
 
 
 ## 🛠️ Kompilacja
-Pliki do kompilacji znajdują się w folderze [Compiler](Software).
+Pliki do kompilacji znajdują się w folderze [Compiler](./Compiler).
 
 Aby skompilować program:
-1. Przejdź do pliku [Compiler/readme.md](Software/Compiler/readme.md).
+1. Przejdź do pliku [Compiler/readme.md](./Compiler/readme.md).
 2. Postępuj zgodnie z zawartymi tam instrukcjami dotyczącymi konfiguracji kompilatora oraz wymaganych bibliotek.
 
 
 ## 🔍 Podgląd i edycja kodu
-Główny kod programu znajduje się w pliku [main.c](Software/Compiler/main.c).
+Główny kod programu znajduje się w pliku [main.c](./Compiler/main.c).
 
 
 ## 📚 Wykorzystane biblioteki
