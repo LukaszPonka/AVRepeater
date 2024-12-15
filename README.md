@@ -3,13 +3,13 @@
 
   
 
-## Wstęp
+## :triangular_flag_on_post: Wstęp
 
 Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą gracz nr 2 musi odtworzyć w poprawnej kolejności. Dopuszczalne są kombinacje maksymalnie dziesięciokrokowe. Jeśli gracz 2 zrobi to poprawnie, wygrywa, w przeciwnym razie przegrywa.
 
   
 
-## Sterowanie:
+## :round_pushpin: Sterowanie:
 
 - **Gracz 1:** używa czterech przycisków przypisanych do portów PD2, PD3, PD4, PD5.
 
@@ -20,7 +20,7 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 
   
 
-## Zasady:
+## :mega: Zasady:
 
 1. Gracz 1 wprowadza sekwencję do 10 przycisków.
 
@@ -44,7 +44,7 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 
 
 
-## Koniec gry:
+## :checkered_flag: Koniec gry:
 
 - Gracz 2 wygrywa, jeśli poprawnie odtworzy całą sekwencję.
 
@@ -53,7 +53,7 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 - Po zakończeniu gry dioda pozostaje włączona, a gra restartuje się po wciśnięciu przycisku START.
 
 
-## Dokumentacja:
+## :ticket: Dokumentacja:
 
 - Schemat układu [PDF](./Hardware/schemav2.pdf)
 
