@@ -27,12 +27,12 @@ Główny kod programu znajduje się w pliku [main.c](./Compiler/main.c).
 
 ### 📌 Definiowanie portów
 - **Diody LED**:
-  - 🟢 Zielona: `PB2`
-  - 🔴 Czerwona: `PB3`
+  - 🟢 Zielona: `PB4`
+  - 🔴 Czerwona: `PB5`
 - **Przyciski**:
-  - Gracz 1: `PD2`, `PD3`, `PD4`, `PD5`
-  - Gracz 2: `PD6`, `PD7`, `PB0`, `PB1`
-  - Start gry: `PB4`
+  - Gracz 1: `PD0`, `PD1`, `PD2`, `PD3`
+  - Gracz 2: `PC2`, `PC3`, `PC4`, `PC5`
+  - Start gry: `PB0`
 
 ### ⚙️ Funkcje użytkowe
 1. **Inicjalizacja UART** (`uart_init`)  
