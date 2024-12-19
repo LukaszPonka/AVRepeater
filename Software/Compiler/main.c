@@ -194,6 +194,7 @@ int main(void) {
     // Konfiguracja Pull-up dla przycisków 
     PORTD |= (1 << BTN1_P1) | (1 << BTN2_P1) | (1 << BTN3_P1) | (1 << BTN4_P1);
     PORTC |= (1 << BTN1_P2) | (1 << BTN2_P2) | (1 << BTN3_P2) | (1 << BTN4_P2);
+    PORTB |= (1 << BNT_START);
 
     uart_print("Oczekiwanie na rozpoczęcie gry.......\r\n");
 
