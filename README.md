@@ -58,6 +58,8 @@ Symulator programu dostępny tutaj: [👉 Demo](https://wokwi.com/projects/41111
 
 ## :ticket: Dokumentacja:
 
+- Dokumentacja części hardwerowej [README.md](./Hardware/README.md)
+
 - Schemat układu [PDF](./Hardware/schemav2.pdf)
 
 - Lista materiałowa [XLS](./Hardware/bom.xls)
