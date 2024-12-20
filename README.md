@@ -66,6 +66,6 @@ Symulator programu dostępny tutaj: [👉 Demo](https://wokwi.com/projects/41111
 
 - Pliki produkcyjne Gerber dla JLCPCB [Gerber](./Hardware/gerber%20for%20jlcpcb/)
   
-- Kod programu [Compiler/main.c](./Software/Compiler/main.c)
+- Kod programu [main.c](./Software/Compiler/main.c)
 
-- Dokumentacja części softwerowej [software/readme.md](./Software/README.MD)
+- Dokumentacja części softwerowej [README.md](./Software/README.md)
