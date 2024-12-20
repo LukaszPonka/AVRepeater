@@ -1,8 +1,5 @@
 # 🚀 Opis części Programowej 
 
-## 🎮 Wersja demonstracyjna online
-Symulator programu dostępny tutaj: [👉 Demo](https://wokwi.com/projects/411113571342260225)
-
 
 ## 🛠️ Kompilacja
 Pliki do kompilacji znajdują się w folderze [Compiler](./Compiler).
@@ -13,7 +10,7 @@ Aby skompilować program:
 
 
 ## 🔍 Podgląd i edycja kodu
-Główny kod programu znajduje się w pliku [main.c](./Compiler/main.c).
+Główny kod programu znajduje się w pliku [Compiler/main.c](./Compiler/main.c).
 
 
 ## 📚 Wykorzystane biblioteki
@@ -44,18 +41,6 @@ Główny kod programu znajduje się w pliku [main.c](./Compiler/main.c).
 4. **Miganie diodą** (`blink`)  
    Proste miganie wybraną diodą LED.
 
-
-
-## 🎲 Logika gry
-
-1. **`player1`**  
-   Gracz 1 wprowadza sekwencję przycisków.
-2. **`player2`**  
-   Gracz 2 próbuje odtworzyć wprowadzoną sekwencję.
-3. **`signal_success`**  
-   Sygnalizacja wygranej gracza zieloną diodą.
-4. **`signal_failure`**  
-   Sygnalizacja przegranej gracza czerwoną diodą.
 
 
 ## 🔄 Główna pętla programu

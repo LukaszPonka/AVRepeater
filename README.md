@@ -7,15 +7,18 @@
 
 Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą gracz nr 2 musi odtworzyć w poprawnej kolejności. Dopuszczalne są kombinacje maksymalnie dziesięciokrokowe. Jeśli gracz 2 zrobi to poprawnie, wygrywa, w przeciwnym razie przegrywa.
 
-  
+
+## 🚀 Wersja demonstracyjna online
+Symulator programu dostępny tutaj: [👉 Demo](https://wokwi.com/projects/411113571342260225)
+
 
 ## :round_pushpin: Sterowanie:
 
-- **Gracz 1:** używa czterech przycisków przypisanych do portów PD2, PD3, PD4, PD5.
+- **Gracz 1:** używa czterech przycisków przypisanych do portów `PD0`, `PD1`, `PD2`, `PD3`.
 
-- **Gracz 2:** używa czterech przycisków przypisanych do portów PD6, PD7, PB0, PB1.
+- **Gracz 2:** używa czterech przycisków przypisanych do portów `PC2`, `PC3`, `PC4`, `PC5`.
 
-- **Start gry lub zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu PB4.
+- **Start gry lub zakończenie wprowadzania sekwencji:** wciśnięcie przycisku przypisanego do portu `PB0`.
 
 
   
@@ -63,3 +66,6 @@ Gra polega na wprowadzeniu przez gracza nr 1 sekwencji przycisków, którą grac
 
 - Pliki produkcyjne Gerber dla JLCPCB [Gerber](./Hardware/gerber%20for%20jlcpcb/)
   
+- Kod programu [Compiler/main.c](./Software/Compiler/main.c)
+
+- Dokumentacja części softwerowej [software/readme.md](./Software/README.MD)
